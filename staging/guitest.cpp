@@ -11,5 +11,5 @@ int main() {
     SDL2GLRenderer *r=new SDL2GLRenderer();
     EventConverter *ec=new SDLEventConverter();
     IoProcessor *p=new IoProcessor();
-    ui=new UI((UiRenderer *)r,ec,p);
+    ui=new UI((UiRenderer *)r,ec,p); 
 }
