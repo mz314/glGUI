@@ -19,6 +19,7 @@ namespace GlGUI {
                 EventConverter *event_converter,
                 IoProcessor *io_processor
         ); 
+        IoProcessor * getIoProcessor();
     };
 }
 

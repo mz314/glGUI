@@ -1,11 +1,11 @@
-CFLAGS=-Isrc/hpp/
+CFLAGS=-Isrc/hpp/ 
 
 test: test.o UI.o IoProcessor.o UiRenderer.o EventConverter.o SDLEventConverter.o SDL2GLRenderer.o
-	g++  $^ -o test 
+	g++  $^ -lSDL2 -lSDL2_ttf -o test 
 	
 
 test.o: staging/guitest.cpp
-	g++ $(CFLAGS) -c $^ -o $@
+	g++ $(CFLAGS) -lSDL2 -lSDL2_ttf -c $^ -o $@
 	
 
 
@@ -28,5 +28,6 @@ SDLEventConverter.o: src/cpp/SDLEventConverter.cpp
 SDL2GLRenderer.o: src/cpp/SDL2GLRenderer.cpp
 	g++  $(CFLAGS) -c  -fPIC  $^ -o $@ 
 	
+
 clean:
 	rm ./*.o

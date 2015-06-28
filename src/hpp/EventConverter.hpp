@@ -7,7 +7,8 @@ namespace GlGUI {
 
     class EventConverter {
     public:
-        virtual Event & convert(void *event)=0;
+        virtual Event  convert(void *event)=0;
+        EventConverter();
     };
 
 }
