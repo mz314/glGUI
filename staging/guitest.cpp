@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <GL/gl.h>
 
 #include "UI.hpp"
 #include "SDLEventConverter.hpp"
@@ -20,6 +21,9 @@ void initSDL() {
             SDL_WINDOW_OPENGL, &window, &renderer);
     screen = SDL_GetWindowSurface(window);
     context = SDL_GL_CreateContext(window);
+    glViewport(0, 0, 640, 640);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 }
 
 int main() {
@@ -30,13 +34,22 @@ int main() {
     ui = new UI((UiRenderer *) r, ec, p);
     initSDL();
     SDL_Event event;
+    glClearColor(0.5,0.5,0.5,1);
     bool exit = false;
     while (!exit) {
         while (SDL_PollEvent(& event)) {
-            ui->getIoProcessor()->passEvent((void *)&event);
+            ui->getIoProcessor()->passEvent((void *) &event);
             if (event.type == SDL_QUIT) {
                 exit = true;
+
             }
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            
+            glClear(GL_COLOR_BUFFER_BIT);
+            
+            glFlush();
+            SDL_GL_SwapWindow(window);
         }
     }
 }

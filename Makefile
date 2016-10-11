@@ -1,7 +1,7 @@
 CFLAGS=-Isrc/hpp/ 
 
 test: test.o UI.o IoProcessor.o UiRenderer.o EventConverter.o SDLEventConverter.o SDL2GLRenderer.o
-	g++  $^ -lSDL2 -lSDL2_ttf -o test 
+	g++  $^ -lSDL2 -lSDL2_ttf -lGL -o test 
 	
 
 test.o: staging/guitest.cpp
